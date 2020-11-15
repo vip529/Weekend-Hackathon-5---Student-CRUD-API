@@ -33,10 +33,10 @@ app.post('/api/student',(req,res)=>{
     const data = req.body;
     const {name,currentClass,division} = req.body;
     if(data && name && currentClass && division){
-        // const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
+        const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
         studentCount++;
         const newStudent = {
-            id:studentCount,
+            id:lastId,
             name:name,
             currentClass:currentClass,
             division:division,
@@ -44,7 +44,7 @@ app.post('/api/student',(req,res)=>{
         }
         studentArray.push(newStudent);
         // res.set('content-type','application/x-www-form-urlencoded');
-        res.send(studentCount);
+        res.send(lastId);
     }else{
         res.sendStatus(400);
         return;
@@ -85,7 +85,7 @@ app.put('/api/student/:id',(req,res)=>{
                 })
                 if(!idFound){
                     if(Object.keys(data).length === 3){
-                        // const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
+                        const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
                         const {name,currentClass,division} = data;
                         studentCount++;
                         const newStudent = {
@@ -97,7 +97,6 @@ app.put('/api/student/:id',(req,res)=>{
                         }
 
                         studentArray.push(newStudent);
-                        res.set('content-type','application/x-www-form-urlencoded')
                         // res.json(studentArray)
                     }else{
                         res.sendStatus(400)
@@ -105,7 +104,6 @@ app.put('/api/student/:id',(req,res)=>{
                 }else{
                     studentArray = []
                     studentArray = [...newStudents]
-                    res.set('content-type','application/x-www-form-urlencoded')
                     // res.json(studentArray);
                 }
                 
