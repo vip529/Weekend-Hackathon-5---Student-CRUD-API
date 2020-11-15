@@ -34,7 +34,7 @@ app.post('/api/student',(req,res)=>{
     const {name,currentClass,division} = req.body;
     if(data && name && currentClass && division){
         const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
-        studentCount++;
+        studentCount = studentCount !== 0 ? studentCount++ : 0;
         const newStudent = {
             id:studentCount,
             name:name,
@@ -83,29 +83,29 @@ app.put('/api/student/:id',(req,res)=>{
                         return student
                     }
                 })
-                // if(!idFound){
-                //     if(Object.keys(data).length === 3){
-                //         const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
-                //         const {name,currentClass,division} = data;
-                //         studentCount++;
-                //         const newStudent = {
-                //             id:studentCount,
-                //             name:name,
-                //             currentClass:currentClass,
-                //             division:division
+                if(!idFound){
+                    if(Object.keys(data).length === 3){
+                        const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
+                        const {name,currentClass,division} = data;
+                        studentCount = studentCount !== 0 ? studentCount++ : 0;
+                        const newStudent = {
+                            id:studentCount,
+                            name:name,
+                            currentClass:currentClass,
+                            division:division
 
-                //         }
+                        }
 
-                //         studentArray.push(newStudent);
-                //         res.json(studentArray)
-                //     }else{
-                //         res.sendStatus(400)
-                //     }
-                // }else{
+                        studentArray.push(newStudent);
+                        res.json()
+                    }else{
+                        res.sendStatus(400)
+                    }
+                }else{
                     studentArray = []
                     studentArray = [...newStudents]
-                    res.json(studentArray);
-                // }
+                    res.json();
+                }
                 
             }
         }
