@@ -76,7 +76,7 @@ app.put('/api/student/:id',(req,res)=>{
                         idFound = true;
                         let newS = {...student}
                         for(let i =0; i<Object.keys(data).length; i++){
-                            newS[Object.keys(data)[i]] = data[Object.keys(data)[i]];
+                            newS[Object.keys(data)[i]] = Object.keys(data)[i] ==="currentClass" ? Number(data[Object.keys(data)[i]]):data[Object.keys(data)[i]];
                         }
                         return newS;
                     }else{
