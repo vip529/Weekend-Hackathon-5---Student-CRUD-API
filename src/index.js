@@ -38,13 +38,13 @@ app.post('/api/student',(req,res)=>{
         const newStudent = {
             id:studentCount,
             name:name,
-            currentClass:currentClass,
+            currentClass:Number(currentClass),
             division:division,
 
         }
         studentArray.push(newStudent);
         // res.set('content-type','application/x-www-form-urlencoded');
-        res.json({'id':Number(studentCount)});
+        res.json({'id':studentCount});
     }else{
         res.sendStatus(400);
         return;
@@ -91,7 +91,7 @@ app.put('/api/student/:id',(req,res)=>{
                         const newStudent = {
                             id:studentCount,
                             name:name,
-                            currentClass:currentClass,
+                            currentClass:Number(currentClass),
                             division:division
 
                         }
