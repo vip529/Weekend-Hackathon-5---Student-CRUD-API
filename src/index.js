@@ -82,7 +82,6 @@ app.put('/api/student/:id',(req,res)=>{
                         return student
                     }
                 })
-                console.log(newStudents)
                 if(!idFound){
                     if(Object.keys(data).length === 3){
                         const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
@@ -97,7 +96,7 @@ app.put('/api/student/:id',(req,res)=>{
 
                         studentArray.push(newStudent);
                         res.set('content-type','application/x-www-form-urlencoded')
-                        res.send(studentArray)
+                        res.json(studentArray)
                     }else{
                         res.sendStatus(400)
                     }
@@ -125,8 +124,6 @@ app.delete('/api/student/:id',(req,res)=>{
     if(initialLength > finalLength){
         studentArray = []
         studentArray = [...filteredStudent]
-        console.log(studentArray);
-    
         res.json('deleted');
     }else{
         res.sendStatus(400)
