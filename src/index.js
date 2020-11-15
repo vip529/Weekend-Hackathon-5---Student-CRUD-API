@@ -36,7 +36,7 @@ app.post('/api/student',(req,res)=>{
         const lastId = studentArray.length !== 0 ? studentArray[studentArray.length -1].id : -1;
         studentCount++;
         const newStudent = {
-            id:lastId,
+            id:lastId+1,
             name:name,
             currentClass:currentClass,
             division:division,
@@ -44,7 +44,7 @@ app.post('/api/student',(req,res)=>{
         }
         studentArray.push(newStudent);
         // res.set('content-type','application/x-www-form-urlencoded');
-        res.send(lastId);
+        res.json(lastId+1);
     }else{
         res.sendStatus(400);
         return;
