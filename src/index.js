@@ -44,7 +44,7 @@ app.post('/api/student',(req,res)=>{
         }
         studentArray.push(newStudent);
         // res.set('content-type','application/x-www-form-urlencoded');
-        res.json({'id':studentArray});
+        res.json({'id':studentCount});
     }else{
         res.sendStatus(400);
         return;
